@@ -1,7 +1,24 @@
 /* ================================================================
    style.css — Ecommerce Header Styles
+   Structure:
+     1. CSS Reset & Base
+     2. CSS Custom Properties (Design Tokens)
+     3. .site-header  — outer wrapper
+     4. .header-top   — logo + search + actions row
+        4a. .logo-area
+        4b. .search-area
+        4c. .actions-area
+     5. .header-nav   — navigation + meta row
+        5a. .nav-links
+        5b. .nav-meta
 ================================================================ */
 
+
+/* ----------------------------------------------------------------
+   1. CSS RESET & BASE
+   Removes browser default margin/padding and sets box-sizing
+   so padding is included inside element widths.
+---------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -28,6 +45,7 @@ button, select, input {
 
 /* ----------------------------------------------------------------
    2. CSS CUSTOM PROPERTIES (Design Tokens)
+   Centralised values — change here, applies everywhere.
 ---------------------------------------------------------------- */
 :root {
   --blue-primary:   #1565C0;   /* Main brand blue — logo rect, search button */
@@ -47,6 +65,8 @@ button, select, input {
 
 /* ----------------------------------------------------------------
    3. .site-header
+   The outermost <header> element.
+   Provides background, shadow, and stacks the two rows vertically.
 ---------------------------------------------------------------- */
 .site-header {
   width: 100%;
@@ -58,36 +78,44 @@ button, select, input {
 
 /* ----------------------------------------------------------------
    4. .header-top
+   Top row: Logo | Search bar | Action icons
+   Uses flexbox with space-between so the three zones stretch
+   across the full width. align-items: center vertically centres them.
 ---------------------------------------------------------------- */
 .header-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;                      
-  padding: 14px 32px;             
+  gap: 20px;                      /* breathing room between zones   */
+  padding: 14px 32px;             /* vertical + horizontal padding   */
   background: var(--header-top-bg);
 }
 
 
 /* ----------------------------------------------------------------
    4a. .logo-area
+   Contains the clickable logo — icon + "Brand" text side by side.
 ---------------------------------------------------------------- */
 .logo-area {
+  /* Shrinks slightly on narrow screens but never collapses */
   flex-shrink: 0;
 }
 
+/* .logo-link wraps both the icon and the text */
 .logo-link {
   display: flex;
   align-items: center;
-  gap: 8px;                       
+  gap: 8px;                       /* space between icon and wordmark */
   color: var(--blue-primary);
 }
 
+/* The SVG icon container */
 .logo-icon {
   display: flex;
   align-items: center;
 }
 
+/* "Brand" wordmark text */
 .logo-text {
   font-size: 22px;
   font-weight: 700;
@@ -98,18 +126,22 @@ button, select, input {
 
 /* ----------------------------------------------------------------
    4b. .search-area
+   The search bar group: [text input | divider | dropdown | button]
+   flex: 1 makes it grow to fill the middle space between logo and
+   actions. The inner elements are kept on one row.
 ---------------------------------------------------------------- */
 .search-area {
-  flex: 1;                        
+  flex: 1;                        /* grow to fill available space    */
   display: flex;
   align-items: center;
-  max-width: 600px;               
+  max-width: 600px;               /* cap width so it doesn't overstretch */
   border: 2px solid var(--blue-primary);
   border-radius: 8px;
-  overflow: hidden;               
+  overflow: hidden;               /* clips children to rounded corners */
   background: var(--white);
 }
 
+/* The text input — flex: 1 so it fills the remaining space */
 .search-input {
   flex: 1;
   border: none;
@@ -124,6 +156,7 @@ button, select, input {
   color: var(--text-light);
 }
 
+/* Thin vertical line that visually separates input from dropdown */
 .search-divider {
   width: 1px;
   height: 50px;
@@ -131,7 +164,7 @@ button, select, input {
   flex-shrink: 0;
 }
 
-/* Category dropdown */
+/* Category dropdown — sits between the divider and the button */
 .category-select {
   border: none;
   outline: none;
@@ -140,10 +173,11 @@ button, select, input {
   color: var(--text-dark);
   background: transparent;
   cursor: pointer;
-  appearance: auto;               
+  appearance: auto;               /* keep browser's native chevron   */
   flex-shrink: 0;
 }
 
+/* Blue "Search" button on the right end of the bar */
 .search-btn {
   border: none;
   background: var(--blue-primary);
@@ -154,7 +188,7 @@ button, select, input {
   cursor: pointer;
   transition: background 0.18s ease;
   flex-shrink: 0;
-  height: 100%;                 
+  height: 100%;                   /* stretch to full bar height      */
 }
 
 .search-btn:hover {
@@ -164,18 +198,20 @@ button, select, input {
 
 /* ----------------------------------------------------------------
    4c. .actions-area
+   Four icon-label links: Profile | Message | Orders | My cart
+   Each .action-item is a flex column (icon stacked above label).
 ---------------------------------------------------------------- */
 .actions-area {
   display: flex;
   align-items: center;
-  gap: 24px;                     
+  gap: 24px;                      /* space between icon groups       */
   flex-shrink: 0;
 }
 
 /* Individual icon + label group */
 .action-item {
   display: flex;
-  flex-direction: column;        
+  flex-direction: column;         /* icon on top, label below        */
   align-items: center;
   gap: 3px;
   color: var(--text-mid);
@@ -187,12 +223,14 @@ button, select, input {
   color: var(--blue-primary);
 }
 
+/* SVG icon inside each action group */
 .action-icon {
   width: 22px;
   height: 22px;
   stroke: currentColor;
 }
 
+/* Small text label under each icon */
 .action-label {
   font-size: 11px;
   color: var(--text-mid);
@@ -202,11 +240,13 @@ button, select, input {
 
 /* ----------------------------------------------------------------
    5. .header-nav
+   Bottom row: Navigation links + Language/Ship-to controls.
+   A light grey bottom border separates it from page content.
 ---------------------------------------------------------------- */
 .header-nav {
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between; /* push .nav-meta to the far right */
   padding: 0 32px;
   border-top: 1px solid var(--border-color);
   background: var(--nav-bottom-bg);
@@ -216,13 +256,16 @@ button, select, input {
 
 /* ----------------------------------------------------------------
    5a. .nav-links
+   Left side: All-category button + page links
+   All items sit on one row with a small gap between them.
 ---------------------------------------------------------------- */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 4px;                       
+  gap: 4px;                       /* tight gap — links sit close     */
 }
 
+/* "All category" pill button with hamburger icon */
 .all-category-btn {
   display: flex;
   align-items: center;
@@ -243,6 +286,7 @@ button, select, input {
   color: var(--blue-primary);
 }
 
+/* Three stacked lines forming the hamburger icon */
 .hamburger-icon {
   display: flex;
   flex-direction: column;
@@ -258,6 +302,7 @@ button, select, input {
   border-radius: 2px;
 }
 
+/* Standard nav links */
 .nav-link {
   display: flex;
   align-items: center;
@@ -275,6 +320,7 @@ button, select, input {
   background: var(--blue-light-bg);
 }
 
+/* "Help" link has a chevron indicator for its dropdown */
 .nav-link--dropdown {
   gap: 4px;
 }
@@ -282,6 +328,8 @@ button, select, input {
 
 /* ----------------------------------------------------------------
    5b. .nav-meta
+   Right side: Language selector + Ship-to selector.
+   Both are plain buttons that look like text + chevron combos.
 ---------------------------------------------------------------- */
 .nav-meta {
   display: flex;
@@ -289,6 +337,7 @@ button, select, input {
   gap: 8px;
 }
 
+/* Shared style for both meta buttons */
 .meta-btn {
   display: flex;
   align-items: center;
@@ -309,15 +358,26 @@ button, select, input {
   color: var(--blue-primary);
 }
 
+/* Country flag emoji sits to the left of the "Ship to" label */
 .flag-icon {
   font-size: 16px;
   line-height: 1;
 }
 /* ================================================================
-  Hero Section Styles
+   hero.css — Hero Section Styles
+   Structure:
+     1. CSS Reset & Base
+     2. CSS Custom Properties (Design Tokens)
+     3. .hero-section       — flex row container
+     4. .sidebar            — left column  (20%)
+     5. .banner             — centre column (55%)
+     6. .promo-cards        — right column  (25%)
 ================================================================ */
 
 
+/* ----------------------------------------------------------------
+   1. CSS RESET & BASE
+---------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -340,6 +400,8 @@ a {
 
 /* ----------------------------------------------------------------
    2. CSS CUSTOM PROPERTIES (Design Tokens)
+   Reuse the same tokens as the header so both files share
+   a single source of truth for colours and spacing.
 ---------------------------------------------------------------- */
 :root {
   --blue-primary:   #1565C0;
@@ -350,9 +412,9 @@ a {
   --text-dark:      #111111;
   --text-mid:       #555555;
   --text-light:     #888888;
-  --banner-bg:      #b2dfdb;   
-  --orange:         #f57c00;  
-  --teal:           #00897b;  
+  --banner-bg:      #b2dfdb;   /* mint/teal from Figma banner background */
+  --orange:         #f57c00;   /* promo card orange */
+  --teal:           #00897b;   /* promo card teal */
   --radius-sm:      4px;
   --radius-md:      8px;
 }
@@ -360,43 +422,71 @@ a {
 
 /* ----------------------------------------------------------------
    3. .hero-section — THE FLEX ROW CONTAINER
+   This is the most important layout rule in the file.
+
+   display: flex puts all three direct children (sidebar, banner,
+   promo-cards) side-by-side in a horizontal row.
+
+   align-items: stretch makes all three columns the same height
+   regardless of how much content each one has — crucial for the
+   sidebar to reach the same height as the tall banner.
+
+   WIDTH SPLIT RATIONALE (adds to 100%):
+     .sidebar      → flex: 0 0 20%  — fixed at 20%, never grows/shrinks
+     .banner       → flex: 0 0 55%  — fixed at 55%, the dominant column
+     .promo-cards  → flex: 0 0 25%  — fixed at 25%, supplementary column
+
+   Using flex: 0 0 <percent> (flex-grow: 0, flex-shrink: 0,
+   flex-basis: <percent>) locks each column to exactly that width.
+   This prevents unexpected resizing if content changes size.
 ---------------------------------------------------------------- */
 .hero-section {
   display: flex;
-  flex-direction: row;     
-  align-items: stretch;    
+  flex-direction: row;      /* default, stated explicitly for clarity  */
+  align-items: stretch;     /* all columns same height                 */
   width: 100%;
-  max-width: 1200px;        
-  margin: 0 auto;                                   
+  max-width: 1200px;        /* cap so it doesn't sprawl on wide screens */
+  margin: 0 auto;           /* centre on page                          */
   background: var(--white);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  overflow: hidden;        
+  overflow: hidden;         /* clips children to the rounded corners   */
   min-height: 360px;
 }
 
 
 /* ----------------------------------------------------------------
-   4. .sidebar — LEFT COLUMN  
+   4. .sidebar — LEFT COLUMN  (20%)
+
+   WHY 20%?
+   On a 1200px container: 20% = 240px.
+   That is the sweet spot for category names:
+     • Wide enough — "Computer and tech" fits on one line.
+     • Narrow enough — the banner still dominates at 55%.
+   Going narrower (e.g. 15%) would cause text wrapping.
+   Going wider (e.g. 30%) would steal too much space from the banner.
+
+   flex: 0 0 20% → never grows, never shrinks, always exactly 20%.
 ---------------------------------------------------------------- */
 .sidebar {
-  flex: 0 0 20%;           
+  flex: 0 0 20%;            /* ← 20% of hero-section width            */
   display: flex;
-  flex-direction: column;   
+  flex-direction: column;   /* stack category links vertically         */
   padding: 8px 0;
   border-right: 1px solid var(--border-color);
   background: var(--white);
 }
 
+/* Each category is a full-width link */
 .sidebar-item {
   display: block;
   padding: 10px 18px;
   font-size: 14px;
   color: var(--text-mid);
   transition: background 0.15s ease, color 0.15s ease;
-  white-space: nowrap;      
+  white-space: nowrap;      /* prevent line-wrapping inside links      */
   overflow: hidden;
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;  /* "…" if label is too long at small sizes */
 }
 
 .sidebar-item:hover {
@@ -404,6 +494,7 @@ a {
   color: var(--blue-primary);
 }
 
+/* Active / selected category — highlighted blue background */
 .sidebar-item--active {
   background: var(--blue-light-bg);
   color: var(--blue-primary);
@@ -412,31 +503,51 @@ a {
 
 
 /* ----------------------------------------------------------------
-   5. .banner — CENTRE COLUMN
+   5. .banner — CENTRE COLUMN  (55%)
+
+   WHY 55%?
+   The banner is the hero — it must be the widest element so the
+   user's eye is drawn here first. 55% gives it clear visual
+   majority (55 > 20 + 25 = 45). On 1200px that's 660px — large
+   enough for a dramatic headline and product image.
+
+   position: relative is needed so the absolutely-positioned
+   background shape (.banner__bg) and image wrap can be layered
+   inside the banner using position: absolute.
+
+   flex: 0 0 55% → locked at exactly 55%, never resizes.
 ---------------------------------------------------------------- */
 .banner {
-  flex: 0 0 55%;            
-  position: relative;       
-  overflow: hidden;         
+  flex: 0 0 55%;            /* ← 55% of hero-section width            */
+  position: relative;       /* establishes positioning context         */
+  overflow: hidden;         /* clips the teal background rect edges    */
   min-height: 360px;
 }
 
+/* ---- Teal/mint background block ----
+   Fills the entire banner area with the soft green colour from
+   Figma. Positioned absolutely so text and image can sit on top.  */
 .banner__bg {
   position: absolute;
-  inset: 0;                 
+  inset: 0;                 /* shorthand for top/right/bottom/left: 0  */
   background: var(--banner-bg);
   z-index: 0;
 }
 
+/* ---- Text content block ----
+   Sits in the left half of the banner so the product image can
+   occupy the right side. z-index: 2 keeps it above both the
+   background (z-index: 0) and the image (z-index: 1).            */
 .banner__content {
   position: absolute;
   top: 50%;
   left: 48px;
-  transform: translateY(-50%);  
+  transform: translateY(-50%);  /* perfect vertical centering          */
   z-index: 2;
   max-width: 260px;
 }
 
+/* Small "Latest trending" eyebrow line */
 .banner__eyebrow {
   font-size: 14px;
   font-weight: 400;
@@ -444,6 +555,7 @@ a {
   margin-bottom: 6px;
 }
 
+/* "Electronic items" headline — the dominant type on the page */
 .banner__headline {
   font-size: 32px;
   font-weight: 700;
@@ -452,6 +564,7 @@ a {
   margin-bottom: 24px;
 }
 
+/* "Learn more" CTA — white outlined button */
 .banner__cta {
   display: inline-block;
   padding: 9px 22px;
@@ -469,36 +582,55 @@ a {
   color: var(--white);
 }
 
-/* ---- Product image ---- */
+/* ---- Product image ----
+   Positioned to the right half of the banner. A large image
+   is cropped by the banner's overflow: hidden.                   */
 .banner__image-wrap {
   position: absolute;
-  right: -20px;             
+  right: -20px;             /* bleed slightly past the right edge      */
   top: 0;
   bottom: 0;
-  width: 65%;               
+  width: 65%;               /* right 65% of the banner column          */
   z-index: 1;
 }
 
 .banner__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;        
+  object-fit: cover;        /* fills the wrap without distorting       */
   object-position: center;
 }
 
 
 /* ----------------------------------------------------------------
-   6. .promo-cards — RIGHT COLUMN
+   6. .promo-cards — RIGHT COLUMN  (25%)
+
+   WHY 25%?
+   Three stacked cards (auth + 2 promos) need enough horizontal
+   room to show short text without awkward line-breaks.
+   25% = 300px on 1200px — comfortable for 2–4 word lines.
+   Going narrower (e.g. 20%) makes the orange/teal cards feel
+   cramped. Keeping sidebar at 20% and this at 25% gives the
+   banner its dominant 55%.
+
+   Together: 20 + 55 + 25 = 100%. Zero gaps, zero overflow.
+
+   flex: 0 0 25% → always exactly 25%.
+   flex-direction: column stacks the three cards vertically.
 ---------------------------------------------------------------- */
 .promo-cards {
-  flex: 0 0 25%;            
+  flex: 0 0 25%;            /* ← 25% of hero-section width            */
   display: flex;
-  flex-direction: column;   
+  flex-direction: column;   /* stack cards top → bottom               */
   border-left: 1px solid var(--border-color);
 }
 
+/* ---- Base .promo-card ----
+   Shared styles for all three cards.
+   flex: 1 on each card distributes the column height equally —
+   each card gets exactly one third of the available height.      */
 .promo-card {
-  flex: 1;                  
+  flex: 1;                  /* grow equally to fill the column height  */
   padding: 18px 16px;
   display: flex;
   flex-direction: column;
@@ -506,16 +638,19 @@ a {
   gap: 10px;
 }
 
+/* Divider between cards */
 .promo-card + .promo-card {
   border-top: 1px solid var(--border-color);
 }
 
 
+/* ---- Card 1: Auth card (Login / Join) ---- */
 .promo-card--auth {
   background: var(--white);
   align-items: flex-start;
 }
 
+/* Circular avatar placeholder */
 .auth-avatar {
   width: 38px;
   height: 38px;
@@ -550,6 +685,7 @@ a {
   gap: 2px;
 }
 
+/* Shared button base */
 .btn {
   display: block;
   width: 100%;
@@ -562,6 +698,7 @@ a {
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
+/* "Join now" — filled blue */
 .btn--primary {
   background: var(--blue-primary);
   color: var(--white);
@@ -573,6 +710,7 @@ a {
   border-color: var(--blue-hover);
 }
 
+/* "Log in" — ghost/outlined */
 .btn--ghost {
   background: transparent;
   color: var(--blue-primary);
@@ -584,14 +722,17 @@ a {
 }
 
 
+/* ---- Card 2: Orange offer card ---- */
 .promo-card--orange {
   background: var(--orange);
 }
 
+/* ---- Card 3: Teal supplier card ---- */
 .promo-card--teal {
   background: var(--teal);
 }
 
+/* Shared text style on coloured cards */
 .promo-card__text {
   font-size: 14px;
   font-weight: 600;

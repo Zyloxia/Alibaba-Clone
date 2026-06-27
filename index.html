@@ -9,13 +9,28 @@
   <!-- Using Google Fonts for clean sans-serif typography -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
-<!-- 1.header-top -->
+<!-- 1. .header-top  → Logo + Search bar + Action icons
+         2. .header-nav  → Navigation links + Language/Ship-to controls
+  ============================================================ -->
 <body>
   <header class="site-header">
+
+  <!-- ============================================================
+       <header> — The outermost semantic wrapper for the entire header.
+       Contains two rows:
+         
+     ============================================================
+         TOP ROW
+         .header-top — flexbox row with three main zones:
+           .logo-area      → Brand icon + name
+           .search-area    → Search input + category dropdown + button
+           .actions-area   → Profile, Message, Orders, Cart icons
+    ============================================================ -->
     <div class="header-top">
 
       <!-- LOGO AREA -->
-     <div class="logo-area">
+      <!-- Contains a small blue shopping-bag icon (SVG) and the "Brand" wordmark -->
+      <div class="logo-area">
         <a href="#" class="logo-link">
           <!-- Inline SVG shopping-bag icon to match Figma's blue bag -->
           <span class="logo-icon">
@@ -29,6 +44,7 @@
       </div>
 
       <!-- SEARCH AREA -->
+      <!-- Three parts side-by-side: text input | category dropdown | search button -->
       <div class="search-area">
         <input
           class="search-input"
@@ -49,8 +65,10 @@
       </div>
 
       <!-- ACTIONS AREA -->
+      <!-- Four icon-label groups: Profile, Message, Orders, My cart -->
       <nav class="actions-area" aria-label="User actions">
 
+        <!-- Each .action-item is a flex column (icon on top, label below) -->
         <a href="#" class="action-item">
           <!-- Person icon -->
           <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
@@ -95,10 +113,16 @@
 
     <!-- ============================================================
          BOTTOM ROW (NAV BAR)
+         .header-nav — flexbox row with two zones:
+           .nav-links      → "All category" menu trigger + page links
+           .nav-meta       → Language selector + Ship to dropdown
     ============================================================ -->
     <nav class="header-nav" aria-label="Main navigation">
-      <!-- Left -->
+
+      <!-- LEFT: Category toggle + navigation links -->
       <div class="nav-links">
+
+        <!-- "All category" hamburger button — styled as a pill -->
         <button class="all-category-btn" type="button" aria-expanded="false">
           <!-- Hamburger lines -->
           <span class="hamburger-icon" aria-hidden="true">
@@ -123,7 +147,7 @@
         </a>
       </div>
 
-      <!-- RIGHT -->
+      <!-- RIGHT: Language + Shipping destination -->
       <div class="nav-meta">
 
         <!-- Language/currency selector -->
@@ -136,6 +160,7 @@
 
         <!-- Ship-to country selector -->
         <button class="meta-btn" type="button" aria-label="Select shipping destination">
+          <!-- German flag emoji as a lightweight stand-in -->
           <span class="flag-icon" aria-hidden="true">🇩🇪</span>
           Ship to
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -151,14 +176,32 @@
 
    <!-- ============================================================
        .hero-section
-      ============================================================ -->
+       The outermost wrapper for the entire hero area.
+       Contains three direct children in a horizontal flex row:
+         1. .sidebar        → category list  (left)
+         2. .banner         → main promo image (centre)
+         3. .promo-cards    → action cards    (right)
+
+       WHY FLEXBOX HERE?
+       We need three columns side-by-side. Flexbox with
+       flex-direction: row (default) achieves this in one rule,
+       and percentage widths on children control the column sizes.
+  ============================================================ -->
   <section class="hero-section" aria-label="Featured categories and promotions">
 
     <!-- ============================================================
-         LEFT SIDEBAR 
+         LEFT SIDEBAR  —  width: 20%
+         WHY 20%?
+         The sidebar is purely a navigation aid. It needs enough
+         room to display category names without wrapping, but
+         should NOT compete visually with the banner. 20% gives
+         ~200px on a 1000px container — enough for single-line
+         category labels, matching the Figma proportions closely.
     ============================================================ -->
     <aside class="sidebar" aria-label="Product categories">
 
+      <!-- Each .sidebar-item is one category link -->
+      <!-- The first item is visually active (highlighted blue) -->
       <a href="#" class="sidebar-item sidebar-item--active">Automobiles</a>
       <a href="#" class="sidebar-item">Clothes and wear</a>
       <a href="#" class="sidebar-item">Home interiors</a>
@@ -185,14 +228,20 @@
     ============================================================ -->
     <div class="banner" role="img" aria-label="Latest trending Electronic items promotion">
 
+      <!-- Decorative background shape — the soft teal/mint rectangle -->
+      <!-- Positioned absolutely so text and image can overlay it -->
       <div class="banner__bg" aria-hidden="true"></div>
 
+      <!-- Text content sits above the background -->
       <div class="banner__content">
         <p class="banner__eyebrow">Latest trending</p>
         <h1 class="banner__headline">Electronic<br>items</h1>
         <a href="#" class="banner__cta">Learn more</a>
       </div>
 
+      <!-- Product image — headphones + laptop + phone -->
+      <!-- role="presentation" because the aria-label on .banner already
+           describes the image; this avoids duplicate screen-reader text -->
       <div class="banner__image-wrap" role="presentation">
         <img
           src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop"
@@ -216,7 +265,10 @@
     ============================================================ -->
     <aside class="promo-cards" aria-label="Account and promotions">
 
+      <!-- ---- Card 1: Login / Join prompt ---- -->
+      <!-- .promo-card--auth uses the white/bordered style -->
       <div class="promo-card promo-card--auth">
+        <!-- Minimal avatar placeholder -->
         <div class="auth-avatar" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <circle cx="12" cy="7" r="4"/>
@@ -227,14 +279,19 @@
           <p class="auth-greeting">Hi, user</p>
           <p class="auth-sub">let's get started</p>
         </div>
+        <!-- Two stacked CTAs: primary blue + ghost -->
         <a href="#" class="btn btn--primary">Join now</a>
         <a href="#" class="btn btn--ghost">Log in</a>
       </div>
 
+      <!-- ---- Card 2: $10 off with new supplier ---- -->
+      <!-- .promo-card--orange uses the orange background from Figma -->
       <div class="promo-card promo-card--orange">
         <p class="promo-card__text">Get US $10 off<br>with a new<br>supplier</p>
       </div>
 
+      <!-- ---- Card 3: Send quotes with supplier preferences ---- -->
+      <!-- .promo-card--teal uses the teal/cyan background from Figma -->
       <div class="promo-card promo-card--teal">
         <p class="promo-card__text">Send quotes with<br>supplier<br>preferences</p>
       </div>
