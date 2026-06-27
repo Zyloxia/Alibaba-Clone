@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALibaba Project</title>
+  <!-- Link to our external stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Using Google Fonts for clean sans-serif typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<!-- 1.header-top -->
+<body>
+  <header class="site-header">
+    <div class="header-top">
+
+      <!-- LOGO AREA -->
+     <div class="logo-area">
+        <a href="#" class="logo-link">
+          <!-- Inline SVG shopping-bag icon to match Figma's blue bag -->
+          <span class="logo-icon">
+              <img src="brand.png" alt="Brand Logo">              
+              <rect width="32" height="32" rx="6" fill="#1565C0"/>
+              <path d="M10 13h12l-1.5 9H11.5L10 13z" fill="white"/>
+              <path d="M13 13v-2a3 3 0 016 0v2" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <!-- SEARCH AREA -->
+      <div class="search-area">
+        <input
+          class="search-input"
+          type="text"
+          placeholder="Search"
+          aria-label="Search products"
+        />
+        <!-- Category dropdown sits between the input and the button -->
+        <div class="search-divider"></div>
+        <select class="category-select" aria-label="Select category">
+          <option>All category</option>
+          <option>Automobiles</option>
+          <option>Clothes and wear</option>
+          <option>Electronics</option>
+          <option>Home interiors</option>
+        </select>
+        <button class="search-btn" type="button">Search</button>
+      </div>
+
+      <!-- ACTIONS AREA -->
+      <nav class="actions-area" aria-label="User actions">
+
+        <a href="#" class="action-item">
+          <!-- Person icon -->
+          <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="12" cy="7" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span class="action-label">Profile</span>
+        </a>
+
+        <a href="#" class="action-item">
+          <!-- Message / chat bubble icon -->  
+          <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+          <span class="action-label">Message</span>
+        </a>
+
+        <a href="#" class="action-item">
+          <!-- Orders / list icon -->
+          <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+            <rect x="9" y="3" width="6" height="4" rx="1"/>
+            <line x1="9" y1="12" x2="15" y2="12"/>
+            <line x1="9" y1="16" x2="13" y2="16"/>
+          </svg>
+          <span class="action-label">Orders</span>
+        </a>
+
+        <a href="#" class="action-item">
+          <!-- Shopping cart icon -->
+          <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/>
+          </svg>
+          <span class="action-label">My cart</span>
+        </a>
+
+      </nav>
+    </div>
+    <!-- END .header-top -->
+
+    <!-- ============================================================
+         BOTTOM ROW (NAV BAR)
+    ============================================================ -->
+    <nav class="header-nav" aria-label="Main navigation">
+      <!-- Left -->
+      <div class="nav-links">
+        <button class="all-category-btn" type="button" aria-expanded="false">
+          <!-- Hamburger lines -->
+          <span class="hamburger-icon" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          All category
+        </button>
+
+        <!-- Inline page links -->
+        <a href="#" class="nav-link">Hot offers</a>
+        <a href="#" class="nav-link">Gift boxes</a>
+        <a href="#" class="nav-link">Projects</a>
+        <a href="#" class="nav-link">Menu item</a>
+
+        <!-- "Help" with a dropdown chevron -->
+        <a href="#" class="nav-link nav-link--dropdown">
+          Help
+          <!-- Down chevron -->
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M2 4l4 4 4-4"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="nav-meta">
+
+        <!-- Language/currency selector -->
+        <button class="meta-btn" type="button" aria-label="Select language and currency">
+          English, USD
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M2 4l4 4 4-4"/>
+          </svg>
+        </button>
+
+        <!-- Ship-to country selector -->
+        <button class="meta-btn" type="button" aria-label="Select shipping destination">
+          <span class="flag-icon" aria-hidden="true">🇩🇪</span>
+          Ship to
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M2 4l4 4 4-4"/>
+          </svg>
+        </button>
+
+      </div>
+    </nav>
+    <!-- END .header-nav -->
+
+  </header>
+
+   <!-- ============================================================
+       .hero-section
+      ============================================================ -->
+  <section class="hero-section" aria-label="Featured categories and promotions">
+
+    <!-- ============================================================
+         LEFT SIDEBAR 
+    ============================================================ -->
+    <aside class="sidebar" aria-label="Product categories">
+
+      <a href="#" class="sidebar-item sidebar-item--active">Automobiles</a>
+      <a href="#" class="sidebar-item">Clothes and wear</a>
+      <a href="#" class="sidebar-item">Home interiors</a>
+      <a href="#" class="sidebar-item">Computer and tech</a>
+      <a href="#" class="sidebar-item">Tools, equipments</a>
+      <a href="#" class="sidebar-item">Sports and outdoor</a>
+      <a href="#" class="sidebar-item">Animal and pets</a>
+      <a href="#" class="sidebar-item">Machinery tools</a>
+      <a href="#" class="sidebar-item">More category</a>
+
+    </aside>
+    <!-- END .sidebar -->
+
+
+    <!-- ============================================================
+         CENTRE BANNER  —  width: 55%
+         WHY 55%?
+         The banner is the hero — the primary visual focal point.
+         It must be the widest column so the eye lands here first.
+         55% gives it clear visual dominance over the two narrower
+         columns (20% + 25% = 45%) while leaving room for the
+         right-side cards. This mirrors the Figma layout where the
+         banner takes up the clear majority of horizontal space.
+    ============================================================ -->
+    <div class="banner" role="img" aria-label="Latest trending Electronic items promotion">
+
+      <div class="banner__bg" aria-hidden="true"></div>
+
+      <div class="banner__content">
+        <p class="banner__eyebrow">Latest trending</p>
+        <h1 class="banner__headline">Electronic<br>items</h1>
+        <a href="#" class="banner__cta">Learn more</a>
+      </div>
+
+      <div class="banner__image-wrap" role="presentation">
+        <img
+          src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop"
+          alt="Headphones product"
+          class="banner__img"
+        />
+      </div>
+
+    </div>
+    <!-- END .banner -->
+
+
+    <!-- ============================================================
+         RIGHT PROMO CARDS  —  width: 25%
+         WHY 25%?
+         The right column is supplementary — login nudge + two
+         promotional offer cards. It needs enough width to render
+         the card text comfortably (no cramped wrapping) but must
+         remain clearly secondary to the banner. 25% achieves this.
+         Together 20% + 55% + 25% = 100% — no overflow, no gap.
+    ============================================================ -->
+    <aside class="promo-cards" aria-label="Account and promotions">
+
+      <div class="promo-card promo-card--auth">
+        <div class="auth-avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="7" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+        <div class="auth-text">
+          <p class="auth-greeting">Hi, user</p>
+          <p class="auth-sub">let's get started</p>
+        </div>
+        <a href="#" class="btn btn--primary">Join now</a>
+        <a href="#" class="btn btn--ghost">Log in</a>
+      </div>
+
+      <div class="promo-card promo-card--orange">
+        <p class="promo-card__text">Get US $10 off<br>with a new<br>supplier</p>
+      </div>
+
+      <div class="promo-card promo-card--teal">
+        <p class="promo-card__text">Send quotes with<br>supplier<br>preferences</p>
+      </div>
+
+    </aside>
+    <!-- END .promo-cards -->
+
+  </section>
+  <!-- END .here -->
+
+</body>
+</html>
